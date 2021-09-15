@@ -1,4 +1,4 @@
-# Algebra-Interactive-Project_In-Progress
+# A Straight Line Equation Project
 3 mini projects for Algebra Teaching
 
 The purpose is to teach kids with an interactive experience about the classic algebra formula “y = mx + b”. 
