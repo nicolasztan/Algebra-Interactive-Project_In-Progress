@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra Learn</title>
+    <link rel = 'stylesheet' href = "algebra.css">
+</head>
+
+<body>
+    <canvas id="myCanvas" width = 447 height = 257></canvas>   
+
+     
+  
+    <h1>Draw a Line</h1>
+    <form>
+        X-coordinate 1 <input type="text" id="start_x"><br><br>
+        Y-coordinate 1<input type="text" id="start_y"><br><br>
+        X-coordinate 2<input type="text" id="end_x"><br><br>
+        Y-coordinate 2<input type="text" id="end_y"><br><br>
+        <input type="button" value="Draw" onclick="draw()">
+        <button type="reset" value="Reset" onclick  = "reset()">Reset</button>
+     </form>
+    <!-- there are 4 inputs + button which will draw on click of mouse. -->
+    
+
+    <!-- adding JS-->
+    <!-- y = mx+b = 'b' is y/m*x = eveyrtim you change. Be able to add a variable (another box) 
+        to adjust your curent line's y-intercept (move it up/down) -->
+    <script src = "algebra.js"> </script>
+    
+   
+
+</body>
+</html>

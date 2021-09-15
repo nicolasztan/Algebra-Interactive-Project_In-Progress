@@ -1,0 +1,12 @@
+canvas {
+    padding: 0px;
+    margin: 50px; /* so not directly on leftside*/
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+
+}
+
+body {
+    margin: 0; 
+}
