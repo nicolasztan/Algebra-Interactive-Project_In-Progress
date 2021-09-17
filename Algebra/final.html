@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type = 'text/css'>
+    * {
+        background-color: rgb(217, 232, 238);
+    }
+    .assume, h1{
+        display:block; 
+        text-align: center;
+    }
+    canvas {
+        padding: 0px;
+        margin: 30px; /* so not directly on leftside*/
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #chunk {
+        margin: 80px; 
+        font-size: large;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+
+    }
+    #ex {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .drawing{
+        display:inline-flex;
+    }   
+    .labels{
+        display: inline-block;
+        margin: 50px;
+    }
+
+    .extra{
+        display: flex;
+        color: brown;
+    }
+    .inputmain, .link{
+        color: green;
+    }
+    .ending, .instruct {
+        font-weight: normal;
+    }
+    /*generate box to be filled*/
+    #explain {
+        background-color: antiquewhite;
+    }
+    .instruct{
+        color: rgb(236, 123, 17);
+    }
+   
+</style>
+</head>
+
+
+<body>
+<h1 style = "font-family:'Times New Roman', Times, serif; color:black;">Receive a Line from Input Values</h1>
+
+<span class = "assume" style= "color:blue ">Assume X-coordinate 1 = "0" and X-coordinate 2 = "10"<br> For simplicity and in reference to the fixed graph above. </span><br><br>
+
+<div id = "ex"> 
+    <img src = "https://lh3.googleusercontent.com/BKiisSiq6JkcWwU3_ZvYrpf9r06emKvOd41UjzyPhT8iRQkm5kzmPgkcueSaole3jWitBhmvm63q1521OZF0tXtH8cvZoMWsWYmew4wJe7Q7N4pdHszE_mN2qti4RW3dneILooQ5rF4=w2400"/>
+</div>
+
+<main>
+
+    <div id = "chunk"> 
+        <p style = color:rgb(235,43,43)> The slope of a line is a measure of its steepness.
+            Mathematically, slope is calculated as "rise over run" (change in y divided by change in x). <br>
+            This means that using the equation of "Y2 - Y1"/"X2 - X1", <br>
+            With this variable, you can find the rate at which changes are taking place! <br><br>
+
+            The Y-intercept ('b') is the point at which an x-value of a line is at 0 (eg. x=0). To simplify things, we can imagine our x-coordinates are changing. <br><br>
+            <span style = color:rgb(182,17,160)> 
+            
+            <br> Let us think about how the y-values can influence the 'b' and 'm'. 
+            Remember, to find a line, you use the equation of "y = m*x + b."  <br><br>
+
+            Play around with the y-coordinates on the right of the canvas to see how it influences both the slope ('m') and the y-intercept('b').
+            <br><br> 
+            <span class = "instruct">You should be able to see the results appear magically on the 'Slope' and 'Y-Intercept' Output Boxes after 
+                pressing on my special GENERATE box! 
+            Press the button again while typing new coords to refresh the canvas. </span></span>
+                
+            </p>
+    
+        <div class = 'drawing'>
+            <canvas id="myCanvas" width = 500  height = 500></canvas>
+            
+            <div class = "labels">
+                <br><br><br><br>    
+                <div class = 'inputmain'>
+                    <label for=""> Enter the Y0 value: </label><input type="textbox" name="y0"><br>
+                    <label for=""> Enter the Y1 value: </label><input type="textbox" name="y1"><br><br>
+                </div>
+                
+
+                <!-- <button onclick="slope()" name = 'slope_but'>Find the Slope</button><br>
+                <button onclick="b()" name = 'b_but'>Find the Y-Intercept</button><br><br> -->
+
+                <button id="explain" > Generate the Straight Line Equation </button><br><br>
+                <!--This button performs the slope() function AND the b() function. Then it draws on cavas. Then it prints the full equation-->
+                <div class = "ending">
+                    <label for="displayValue1">The Slope is: </label><input type="textbox" name="slope"> <br>
+                    <label for="displayValue1">The Y-Intercept  is: </label><input type="textbox" name="b"><br><br>
+                </div>
+               
+
+                <p id="dummy"></p>
+            </div>
+    </div>
+    
+</main>
+
+<span class = "extra"> By Nicolas Tan &copy </span>
+<a href = "https://www.linkedin.com/in/nicolas-tan/"class = "link"> Click to Go To My LinkedIn </a>
+    
+   
+
+    
+
+<script>
+    //insert canvas commands to startup and perform the draw() function
+    var canvas = document.querySelector('canvas');
+    var c = canvas.getContext('2d'); 
+    c.lineWidth = 3;
+
+    //DRAW FUNCTION() TO CREATE THE DRAWING ON CANVAS.
+    function draw(){
+        window.onload = function() {
+            var canvas = document.getElementById("myCanvas"); //find keyword mycavnas
+            var ctx = canvas.getContext("2d");                  //make 2d
+            var img = document.getElementById("scream");
+            ctx.drawImage(img, 10, 10);
+
+        };
+      
+        var y0 = document.getElementsByName('y0')[0].value; 
+        var y1 =document.getElementsByName('y1')[0].value;
+            //eg. x1,y1 & x2,y2 --> (0,5) ; (0,5)
+
+        //actually draw it out on the canvas
+        c.beginPath();
+        c.translate(0, canvas.height); /* move  the canvas default layout origin (0,0) from top left to bot left of canvas */
+        
+        c.moveTo(0,y0*-50); //we start from default 0 as x-initial value
+        c.scale(1, -1); /* invert the y-axis using scale()*/
+        c.lineTo(10*50,y1*50);    //x-final is the x=10 value because that is the last index possible. We want to give a zoom-in illusion
+        c.strokeStyle = "#fa34a3"; //ADD COLOR TO LINE
+        c.stroke(); /* connec the dots from x1,y1 coord to x2,y2 coord*/
+
+    } 
+
+    /* NOW WE HEAD INTO THE ARGUMENT INSERTION FROM USER. THIS WILL METHOD CALL THE DRAW() FUNCTION ABOVE IN LAST BUTTON's EVENT LISTENER*/
+    let final_slope; //float
+    var final_b; //float
+
+   function slope() {
+        var f = document.getElementsByName('y0')[0].value;
+        var s =document.getElementsByName('y1')[0].value;
+        var result = parseFloat((s-f)/10);  // '10-5/10' = 0.5
+        //var result = pre_result.toFixed(2); //2 sigs
+        
+        //check if it is integer to proceed. If okay, add slope and print it.
+        if((f %1 === 0) && (s %1 === 0)){
+            if ((f <= 10) && (s <= 10) && (f >= 0) && (s >= 0)) {
+                document.getElementsByName('slope')[0].value= result;
+
+                final_slope = result;
+            }
+            else {
+                alert("Invalid input. Please enter an integer from 0-10.")
+            }
+        }
+        else {
+            alert("Invalid input. Please enter an integer from 0-10.")
+        }
+    }
+   
+    function b() {
+        //check if it is integer to proceed. If okay, add y-interecept and print it.
+        if ((document.getElementsByName('y0')[0].value)%1 === 0){
+            if (((document.getElementsByName('y0')[0].value) >= 0) && ((document.getElementsByName('y0')[0].value) <= 10)){
+            document.getElementsByName('b')[0].value= document.getElementsByName('y0')[0].value;
+
+            final_b = parseFloat(document.getElementsByName('y0')[0].value);
+            }
+            else {
+                alert("Invalid input. Please enter an integer from 0-10.")
+            }
+        } 
+        else {
+            alert("Invalid input. Please enter an integer from 0-10.")
+        }
+    }
+
+
+   //Add an event listener so that when button expl is clicked, an image and video explanation pops up showign rise/run
+    document.getElementById("explain").addEventListener("click", function() {
+    //document.getElementById("demo").innerHTML = full_eq;
+    //use here to deub: console.log(final_slope);
+    //use here to debug: console.log(final_b);
+    //use here to debug: console.log('The Straight Line Equation is y = %fx + %f', final_slope, final_b); //%f = float, %i = int
+   
+    if ((final_b === 'undefined') || (final_slope === 'undefined')){
+        alert('Total Line Equation: Please enter proper integers from 0-10 for both argument values.')
+    }
+    if(((document.getElementsByName('y0')[0].value) > 10) || ((document.getElementsByName('y0')[0].value) < 0)
+    || (((document.getElementsByName('y1')[0].value) > 10)) || (((document.getElementsByName('y1')[0].value) > 10))){
+        alert('Total Line Equation: Please enter proper integers from 0-10 for both argument values.');
+    }
+    else {
+        slope();
+        b();
+
+        if(final_slope === 0) {
+            document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_b;
+        }
+        else if(final_b === 0) {
+            if (final_slope === 1){
+                document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_slope;
+            }
+            else if (final_slope === -1) {
+                document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = -' + final_slope;
+            }
+            else {
+                document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_slope + '*x';
+            }
+        }
+        else {
+            document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_slope+'*x + ' + final_b +'.';
+        }
+        //make line not need to mirror when refreshing.
+        c.clearRect(0,0, canvas.width, canvas.height); //clear canvas so no need to reload.
+        draw();
+
+    }
+
+    }); /*basically takes in the global vars that have been modified and prints on the actual html site itself using .innerhtml*/
+
+</script>
+</body>
+</html>
+
+
+<!-- test cases:
+0; 10 = y=x
+5; 5 = straight line-->
