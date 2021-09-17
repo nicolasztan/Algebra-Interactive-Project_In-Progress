@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type = 'text/css'>
+    * {
+        background-color: rgb(217, 232, 238);
+    }
+    .assume, h1{
+        display:block; 
+        text-align: center;
+    }
+</style>
+</head>
+
+
+<body>
+<h1 style = "font-family:'Times New Roman', Times, serif; color:black;">Receive a Line from Input Values</h1>
+
+<span class = "assume" style= "color:blue ">Assume X-coordinate 1 = "0" and X-coordinate 2 = "10"<br> For simplicity and in reference to the fixed graph above. </span><br><br>
+<label for=""> Enter the Y0 value: </label><input type="textbox" name="y0"><br>
+<label for=""> Enter the Y1 value: </label><input type="textbox" name="y1"><br>
+
+<p style = color:rgb(235,43,43)> The slope of a line is a measure of its steepness.
+Mathematically, slope is calculated as "rise over run" (change in y divided by change in x). <br>
+This means that using the equation of "Y2 - Y1"/"X2 - X1", <br>
+With this variable, you can find the rate at which changes are taking place! <br><br>
+
+The Y-intercept ('b') is the point at which an x-value of a line is at 0 (eg. x=0). To simplify things, we can imagine our x-coordinates are changing. <br><br>
+<span style = color:rgb(182,17,160)> Let us think about how the y-values can influence the 'b' and 'm'. 
+Remember, to find a line, you use the equation of "y = m*x + b."  <br><br>
+
+Play around with the y-coordinates above and see how it influences both the slope ('m') and the y-intercept('b')</span>.</p>
+  
+<button onclick="slope()" name = 'slope_but'>Find the Slope</button><br>
+<button onclick="b()" name = 'b_but'>Find the Y-Intercept</button><br><br>
+
+<label for="displayValue1">The Slope is: </label><input type="textbox" name="slope"> <br>
+<label for="displayValue1">The Y-Intercept  is: </label><input type="textbox" name="b"><br><br>
+
+<button id="explain">Explain More In-Depth</button>
+<p id="dummy"></p>
+
+
+<script>
+    
+    let final_slope; //float
+    var final_b; //float
+
+   function slope() {
+        var f = document.getElementsByName('y0')[0].value;
+        var s =document.getElementsByName('y1')[0].value;
+        var result = parseFloat((s-f)/10);  // '10-5/10' = 0.5
+        //var result = pre_result.toFixed(2); //2 sigs
+        
+        //check if it is integer to proceed. If okay, add slope and print it.
+        if((f %1 === 0) && (s %1 === 0)){
+            if ((f <= 10) && (s <= 10) && (f >= 0) && (s >= 0)) {
+                document.getElementsByName('slope')[0].value= result;
+
+                final_slope = result;
+            }
+            else {
+                alert("Invalid input. Please enter an integer from 0-10.")
+            }
+        }
+        else {
+            alert("Invalid input. Please enter an integer from 0-10.")
+        }
+    }
+   
+    function b() {
+        //check if it is integer to proceed. If okay, add y-interecept and print it.
+        if ((document.getElementsByName('y0')[0].value)%1 === 0){
+            if (((document.getElementsByName('y0')[0].value) >= 0) && ((document.getElementsByName('y0')[0].value) <= 10)){
+            document.getElementsByName('b')[0].value= document.getElementsByName('y0')[0].value;
+
+            final_b = parseFloat(document.getElementsByName('y0')[0].value);
+            }
+            else {
+                alert("Invalid input. Please enter an integer from 0-10.")
+            }
+        } 
+        else {
+            alert("Invalid input. Please enter an integer from 0-10.")
+        }
+    }
+       
+
+
+   //Add an event listener so that when button expl is clicked, an image and video explanation pops up showign rise/run
+    document.getElementById("explain").addEventListener("click", function() {
+    //document.getElementById("demo").innerHTML = full_eq;
+    //use here to deub: console.log(final_slope);
+    //use here to debug: console.log(final_b);
+    //use here to debug: console.log('The Straight Line Equation is y = %fx + %f', final_slope, final_b); //%f = float, %i = int
+    if(final_slope === 0) {
+        document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_b;
+    }
+    else if(final_b === 0) {
+        document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_slope + '*x';
+    }
+    else if ((final_b === 'undefined') || (final_slope === 'undefined')){
+        alert('Total Line Equation: Please enter proper integers from 0-10 for both argument values.')
+    }
+    else {
+        document.getElementById("dummy").innerHTML = 'The Straight Line Equation is y = ' + final_slope+'*x + ' + final_b +'.';
+    }
+
+    }); /*basically takes in the global vars that have been modified and prints on the actual html site itself using .innerhtml*/
+
+</script>
+</body>
+</html>
