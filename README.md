@@ -6,13 +6,11 @@ The purpose is to teach kids with an interactive experience about the classic al
 I have 3 mini sections here. 
 
 FIRST:
-"algebra.html" does the following:
+"final.html" does the following:
 + Present a graph of a line
 + Interactively adjust the slope (m) of the line via x-y intercept inputs
 + Update the graph of the line in realtime
-+ Clear canvas and user input
-
-(current issue: no input for y-intercept)
++ Clear canvas and user input 
 
 SECOND:
 "canvas-learn.html" is an off-topic project to compensate for the lack of features in algebra.html. 
@@ -22,5 +20,5 @@ around a responsive window and when a mouse hovers over some distance of a fixed
 
 
 THIRD:
- "slider.html" was going to be my main file with the algebra.html components embedded on the same page.
+ "slider.html" is a simple slider that can be added to the algebra.html components embedded on the same page if using more than just Vanilla JS, but like with ChartJS and more.
  I would have a chart overlapped above an aesthetic glass display, where the sliders would influence the line a user can play with.
