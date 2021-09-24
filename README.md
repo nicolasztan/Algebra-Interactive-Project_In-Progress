@@ -22,3 +22,5 @@ around a responsive window and when a mouse hovers over some distance of a fixed
 THIRD:
  "slider.html" is a simple slider that can be added to the algebra.html components embedded on the same page if using more than just Vanilla JS, but like with ChartJS and more.
  I would have a chart overlapped above an aesthetic glass display, where the sliders would influence the line a user can play with.
+
+Download the files, save it so it can be uploaded in any browser and it should work.
