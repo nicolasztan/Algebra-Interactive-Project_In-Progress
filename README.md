@@ -23,10 +23,12 @@ THIRD:
  I would have a chart overlapped above an aesthetic glass display, where the sliders would influence the line a user can play with.
 
 **Built With**
+
 HTML5
 CanvasJS
 
 **Getting Started**
+
 1. Download the files
 2. Open with any browser + play!
 
