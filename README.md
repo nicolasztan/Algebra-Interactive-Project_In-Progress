@@ -1,9 +1,8 @@
-#Straight Line Equation Project
-3 mini projects for Algebra Teaching
+**About this Project:**
 
-The purpose is to teach kids with an interactive experience about the classic algebra formula “y = mx + b”. 
 
-I have 3 mini sections here. 
+This project was for the purpose is to teach kids the classic algebra formula “y = mx + b” in an interactive environment. 
+There are 3 sections here for this algebraic teaching of linear equations. 
 
 FIRST:
 "final.html" does the following:
@@ -23,4 +22,16 @@ THIRD:
  "slider.html" is a simple slider that can be added to the algebra.html components embedded on the same page if using more than just Vanilla JS, but like with ChartJS and more.
  I would have a chart overlapped above an aesthetic glass display, where the sliders would influence the line a user can play with.
 
-Download the files, save it so it can be uploaded in any browser and it should work.
+**Built With**
+HTML5
+CanvasJS
+
+**Getting Started**
+1. Download the files
+2. Open with any browser + play!
+
+**Contact**
+Nicolas Tan -- nicolasztan@gmail.com
+
+**Acknowledgements**
+I give special thanks to the following Youtubers for making the documentation of CanvasJS easier to understand: Chris Course & Traversy Media.
